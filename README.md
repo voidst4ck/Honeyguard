@@ -1,2 +1,3 @@
 # Honeyguard
-# Honeyguard
+
+A simple honeypot project.
