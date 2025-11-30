@@ -57,7 +57,7 @@ def main():
     stop_event = Event()
     
     def signal_handler(sig, frame):
-        logger.info("\n🛑 Shutting down...")
+        logger.info("🛑 Shutting down...")
         stop_event.set()
     
     signal.signal(signal.SIGINT, signal_handler)

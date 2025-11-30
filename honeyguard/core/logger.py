@@ -25,15 +25,22 @@ class JSONFormatter(logging.Formatter):
 def setup_logger(log_file='logs/honeyguard.log', level='INFO', format_type='json'):
     """Configure le logger principal"""
     
+    # Ajoute la date au nom du fichier
+    log_path = Path(log_file)
+    date_str = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    
+    # logs/honeyguard.log → logs/honeyguard_20250115.log
+    log_file_with_date = log_path.parent / f"{log_path.stem}_{date_str}{log_path.suffix}"
+    
     # Crée le dossier logs
-    Path(log_file).parent.mkdir(parents=True, exist_ok=True)
+    log_file_with_date.parent.mkdir(parents=True, exist_ok=True)
     
     # Logger principal
     logger = logging.getLogger('honeyguard')
     logger.setLevel(getattr(logging, level.upper()))
     
     # Handler fichier
-    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+    file_handler = logging.FileHandler(log_file_with_date, encoding='utf-8')
     
     if format_type == 'json':
         file_handler.setFormatter(JSONFormatter())
@@ -50,6 +57,9 @@ def setup_logger(log_file='logs/honeyguard.log', level='INFO', format_type='json
         logging.Formatter('[%(asctime)s] %(levelname)-8s %(message)s', datefmt='%H:%M:%S')
     )
     logger.addHandler(console_handler)
+    
+    # Log le nom du fichier utilisé
+    logger.info(f"Logging to: {log_file_with_date}")
     
     return logger
 
