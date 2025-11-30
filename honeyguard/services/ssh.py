@@ -6,7 +6,63 @@ from datetime import datetime
 
 from honeyguard.core.config import config
 from honeyguard.core.logger import log_event
+from honeyguard.core.users import user_manager
 
+# Dans SSHServer.check_auth_password()
+def check_auth_password(self, username, password):
+    """Capture credentials et check whitelist"""
+    
+    self.attempt_count += 1
+    
+    # Check si user est whitelisted
+    user_config = user_manager.check_credentials(username, password)
+    
+    if user_config:
+        # USER AUTORISÉ
+        self.logger.warning(
+            f"[{self.session_id}] ✅ WHITELISTED - "
+            f"{self.client_ip} - User: '{username}' (shell: {user_config['shell']})"
+        )
+        
+        log_event('ssh', 'auth_success', {
+            'source_ip': self.client_ip,
+            'session_id': self.session_id,
+            'username': username,
+            'auth_method': 'password',
+            'whitelisted': True,
+            'shell_access': user_config['shell'],
+            'level': user_config['level'],
+            'success': True
+        })
+        
+        # Si shell activé, on accepte l'auth
+        if user_config['shell']:
+            self.user_config = user_config
+            return paramiko.AUTH_SUCCESSFUL  # ← Autorise !
+    
+    else:
+        # USER NON AUTORISÉ (comportement normal honeypot)
+        self.logger.warning(
+            f"[{self.session_id}] 🔑 Attempt {self.attempt_count}/{self.max_attempts} - "
+            f"{self.client_ip} - User: '{username}' | Pass: '{password}'"
+        )
+        
+        log_event('ssh', 'auth_attempt', {
+            'source_ip': self.client_ip,
+            'session_id': self.session_id,
+            'username': username,
+            'password': password,
+            'auth_method': 'password',
+            'attempt': self.attempt_count,
+            'whitelisted': False,
+            'success': False
+        })
+    
+    # Ferme après max_attempts (sauf si whitelisted)
+    if self.attempt_count >= self.max_attempts:
+        self.logger.info(f"[{self.session_id}] Max attempts reached")
+    
+    return paramiko.AUTH_FAILED
 
 class SSHHoneypot:
     """SSH Honeypot avec Paramiko"""
