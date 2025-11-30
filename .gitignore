@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Pipenv
+Pipfile.lock
+
+# Logs
+logs/
+*.log
+
+# macOS
+.DS_Store
