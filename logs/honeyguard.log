@@ -1,0 +1,17 @@
+{"timestamp": "2025-11-30T23:12:17.764435Z", "level": "INFO", "service": "system", "message": "============================================================"}
+{"timestamp": "2025-11-30T23:12:17.764802Z", "level": "INFO", "service": "system", "message": "🍯 HoneyGuard v0.1.0"}
+{"timestamp": "2025-11-30T23:12:17.765039Z", "level": "INFO", "service": "system", "message": "============================================================"}
+{"timestamp": "2025-11-30T23:12:18.751123Z", "level": "INFO", "service": "system", "message": "✓ SSH service loaded"}
+{"timestamp": "2025-11-30T23:12:18.751377Z", "level": "INFO", "service": "system", "message": "Enabled services: ssh"}
+{"timestamp": "2025-11-30T23:12:18.751530Z", "level": "INFO", "service": "system", "message": "============================================================"}
+{"timestamp": "2025-11-30T23:12:18.751831Z", "level": "INFO", "service": "system", "message": "SSH Honeypot started on 0.0.0.0:2222"}
+{"timestamp": "2025-11-30T23:12:23.487454Z", "level": "WARNING", "service": "ssh", "message": "connection", "source_ip": "127.0.0.1", "source_port": 61485, "session_id": "20251201001223487308"}
+{"timestamp": "2025-11-30T23:12:35.078858Z", "level": "WARNING", "service": "system", "message": "[20251201001223487308] 🔑 127.0.0.1 - User: 'toto' | Pass: 'toto'"}
+{"timestamp": "2025-11-30T23:12:35.079871Z", "level": "WARNING", "service": "ssh", "message": "auth_attempt", "source_ip": "127.0.0.1", "session_id": "20251201001223487308", "username": "toto", "password": "toto", "auth_method": "password", "success": false}
+{"timestamp": "2025-11-30T23:12:37.573269Z", "level": "WARNING", "service": "system", "message": "[20251201001223487308] 🔑 127.0.0.1 - User: 'toto' | Pass: 'titi'"}
+{"timestamp": "2025-11-30T23:12:37.574111Z", "level": "WARNING", "service": "ssh", "message": "auth_attempt", "source_ip": "127.0.0.1", "session_id": "20251201001223487308", "username": "toto", "password": "titi", "auth_method": "password", "success": false}
+{"timestamp": "2025-11-30T23:12:38.408332Z", "level": "WARNING", "service": "system", "message": "[20251201001223487308] 🔑 127.0.0.1 - User: 'toto' | Pass: 'tata'"}
+{"timestamp": "2025-11-30T23:12:38.409217Z", "level": "WARNING", "service": "ssh", "message": "auth_attempt", "source_ip": "127.0.0.1", "session_id": "20251201001223487308", "username": "toto", "password": "tata", "auth_method": "password", "success": false}
+{"timestamp": "2025-11-30T23:13:32.972073Z", "level": "INFO", "service": "system", "message": "\n🛑 Shutting down..."}
+{"timestamp": "2025-11-30T23:13:32.980515Z", "level": "INFO", "service": "system", "message": "SSH Honeypot stopped"}
+{"timestamp": "2025-11-30T23:13:32.981002Z", "level": "INFO", "service": "system", "message": "👋 Goodbye!"}

@@ -1,0 +1,29 @@
+# Configuration HoneyGuard
+
+app:
+  name: "HoneyGuard"
+  version: "0.1.0"
+
+# Services (activer/désactiver)
+services:
+  ssh:
+    enabled: true           # ← Active/désactive SSH
+    host: "0.0.0.0"
+    port: 2222
+    banner: "SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.4"
+  
+  http:
+    enabled: false          # ← Désactivé pour l'instant
+    host: "0.0.0.0"
+    port: 8080
+  
+  ftp:
+    enabled: false          # ← Désactivé pour l'instant
+    host: "0.0.0.0"
+    port: 2121
+
+# Logging
+logging:
+  level: "INFO"             # DEBUG, INFO, WARNING, ERROR
+  file: "logs/honeyguard.log"
+  format: "json"            # json ou text
