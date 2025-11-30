@@ -1,0 +1,22 @@
+# Utilisateurs autorisés à accéder au shell contrôlé
+
+users:
+  - username: "admin"
+    password: "SuperSecret123!"
+    shell: true                    # Accès au shell
+    level: "high_interaction"      # high_interaction ou low_interaction
+  
+  - username: "researcher"
+    password: "R3s3arch2024"
+    shell: true
+    level: "high_interaction"
+  
+  - username: "monitor"
+    password: "M0nit0r!"
+    shell: false                   # Juste capture credentials, pas de shell
+    level: "low_interaction"
+
+# Comportement par défaut pour users non listés
+default:
+  allow_shell: false
+  max_attempts: 3
