@@ -12,7 +12,7 @@ Multi-service SSH honeypot for threat intelligence gathering and attacker profil
 
 ### Prerequisites
 
-- Python 3.10+
+- Python 3.9+
 - Pipenv
 
 ## 🔍 Testing
@@ -30,14 +30,6 @@ ssh anyuser@<honeypot-ip> -p 2222
 - Run in isolated environment (VM, separate VLAN)
 - Monitor resource usage (DoS attacks possible)
 - Regularly review logs for reconnaissance patterns
-
-## 🔧 Configuration
-
-Edit `main.py` to configure:
-
-- **Port**: Change `port=2222` 
-- **Host**: Change `host='0.0.0.0'`
-- **Log Level**: Modify `HoneyLogger(log_level=10)` (10=DEBUG, 20=INFO)
 
 ## 📜 License
 
